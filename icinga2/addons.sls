@@ -7,7 +7,7 @@ checks_and_plugins:
       - monitoring-plugins-standard
       - libmonitoring-plugin-perl
       - nagios-plugins-contrib
-      {% elseif distrib_codename == 'xenial' %}
+      {% elif distrib_codename == 'xenial' %}
       - monitoring-plugins-standard ### is not available in ubuntu 14.04
       - libmonitoring-plugin-perl ### is not available in ubuntu 14.04
       - nagios-plugins-contrib
