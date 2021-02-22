@@ -64,6 +64,7 @@ icinga2-ido-db-install:
     - user: postgres
     - name: 'echo "set role {{ ido_db_user }}; \\i /usr/share/icinga2-ido-pgsql/schema/pgsql.sql" | psql {{ ido_db_name }} '
     - timeout: 15
+    - runas: postgres
 
 icinga2-ido-pgsql-config:
   file.managed:
