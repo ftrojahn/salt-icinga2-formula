@@ -100,6 +100,13 @@ icinga2-pki-new-ca:
 
 {% set node_name = salt['pillar.get']("icinga2:master:nodename", nodename) -%}
 {% set cert_path = salt['pillar.get']("icinga2:master:cert_path", "/var/lib/icinga2/certs") -%}
+icinga2-pki-certpath:
+  file.directory:
+    - user:  nagios
+    - name:  {{ cert_path }}
+    - group: nagios
+    - mode:  755
+
 icinga2-pki-create-csr:
   cmd.run:
     - name: "icinga2 pki new-cert --cn '{{ node_name }}' --key '{{ cert_path }}/{{ node_name }}.key' --csr '{{ cert_path }}/{{ node_name }}.csr'"
