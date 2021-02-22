@@ -119,10 +119,11 @@ icinga2-pki-create-csr:
 icinga2-pki-create-crt:
   cmd.run:
     - require:
-      - file: {{ ssl_csr_path }}
+      - icinga2-pki-create-csr
     - name: "icinga2 pki sign-csr --csr '{{ cert_path }}/{{ node_name }}.csr' --cert '{{ cert_path }}/{{ node_name }}.crt'"
     - unless:
-      - file: icinga2-pki-create-csr
+      - fun: file.file_exists
+        path: {{ cert_path }}/{{ node_name }}.crt
 
 icinga2-service:
   service.running:
